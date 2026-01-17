@@ -119,7 +119,7 @@ is included at `scripts/faster_whisper_toggle_wrapper.sh` and can be customized.
 
 In KDE:
 - System Settings -> Shortcuts -> Custom Shortcuts -> Add Command
-- Command: `/path/to/faster-whisper/scripts/faster_whisper_toggle_wrapper.sh`
+- Command: `/path/to/wayland-whisper/scripts/faster_whisper_toggle_wrapper.sh`
 
 ## Tray autostart
 
@@ -135,7 +135,7 @@ bash scripts/install-tray-service.sh
 KDE Autostart:
 
 - System Settings -> Autostart -> Add Script
-- Script: `/path/to/faster-whisper/scripts/faster_whisper_tray_wrapper.sh`
+- Script: `/path/to/wayland-whisper/scripts/faster_whisper_tray_wrapper.sh`
 
 ## Wayland notes
 

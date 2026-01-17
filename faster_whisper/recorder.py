@@ -27,11 +27,11 @@ def _xdg_dir(env_var, fallback_suffix):
 
 
 def _cache_dir():
-    return _xdg_dir("XDG_CACHE_HOME", ".cache") / "faster-whisper"
+    return _xdg_dir("XDG_CACHE_HOME", ".cache") / "wayland-whisper"
 
 
 def _config_dir():
-    return _xdg_dir("XDG_CONFIG_HOME", ".config") / "faster-whisper"
+    return _xdg_dir("XDG_CONFIG_HOME", ".config") / "wayland-whisper"
 
 
 def _state_path():
@@ -252,7 +252,7 @@ def _status(_args):
 
 def _build_parser():
     parser = argparse.ArgumentParser(
-        description="Record audio and transcribe with faster-whisper."
+        description="Record audio and transcribe with wayland-whisper."
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 

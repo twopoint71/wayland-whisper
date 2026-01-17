@@ -21,7 +21,7 @@ def _xdg_dir(env_var, fallback_suffix):
 
 
 def _state_path():
-    cache_dir = _xdg_dir("XDG_CACHE_HOME", ".cache") / "faster-whisper"
+    cache_dir = _xdg_dir("XDG_CACHE_HOME", ".cache") / "wayland-whisper"
     return cache_dir / "recording.json"
 
 
@@ -63,7 +63,7 @@ class TrayApp(QtWidgets.QSystemTrayIcon):
         self.quit_action = self.menu.addAction("Quit")
         self.quit_action.triggered.connect(self.app.quit)
         self.setContextMenu(self.menu)
-        self.setToolTip("faster-whisper")
+        self.setToolTip("wayland-whisper")
 
         self.timer = QtCore.QTimer(self)
         self.timer.setInterval(1000)
