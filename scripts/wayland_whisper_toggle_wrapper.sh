@@ -8,6 +8,19 @@ VENV_DIR="${VENV_DIR:-${PROJECT_DIR}/.venv}"
 cd "${PROJECT_DIR}"
 source "${VENV_DIR}/bin/activate"
 
+# Path to nvidia runtimes
+CUBLAS_PATH="$(pwd)/.venv/lib/python3.10/site-packages/nvidia/cublas/lib"
+CUDNN_PATH="$(pwd)/.venv/lib/python3.10/site-packages/nvidia/cudnn/lib"
+
+# Add cublas if missing
+[[ ":$LD_LIBRARY_PATH:" != *":$CUBLAS_PATH:"* ]] && \
+    export LD_LIBRARY_PATH="$CUBLAS_PATH${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+# Add cudnn if missing
+[[ ":$LD_LIBRARY_PATH:" != *":$CUDNN_PATH:"* ]] && \
+    export LD_LIBRARY_PATH="$CUDNN_PATH${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+
 # Defaults (override in this script, env vars, or CLI flags below).
 FW_MODEL="${FW_MODEL:-small}"
 FW_DEVICE="${FW_DEVICE:-cuda}" # cpu | cuda | auto

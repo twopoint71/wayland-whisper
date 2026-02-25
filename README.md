@@ -39,12 +39,6 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Optional: install console scripts
-
-```bash
-pip install -e .
-```
-
 ## Usage
 
 Record + transcribe with a single toggle:

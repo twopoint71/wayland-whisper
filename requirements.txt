@@ -5,3 +5,5 @@ onnxruntime>=1.14,<2
 av>=11
 tqdm
 PyQt6
+nvidia-cublas-cu12
+nvidia-cudnn-cu12
