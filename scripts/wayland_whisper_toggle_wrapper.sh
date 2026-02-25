@@ -12,14 +12,21 @@ source "${VENV_DIR}/bin/activate"
 CUBLAS_PATH="$(pwd)/.venv/lib/python3.10/site-packages/nvidia/cublas/lib"
 CUDNN_PATH="$(pwd)/.venv/lib/python3.10/site-packages/nvidia/cudnn/lib"
 
+# Use ${LD_LIBRARY_PATH:-} to avoid "unbound variable" errors
+CURRENT_LD_PATH="${LD_LIBRARY_PATH:-}"
+
 # Add cublas if missing
-[[ ":$LD_LIBRARY_PATH:" != *":$CUBLAS_PATH:"* ]] && \
-    export LD_LIBRARY_PATH="$CUBLAS_PATH${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+if [[ ":$CURRENT_LD_PATH:" != *":$CUBLAS_PATH:"* ]]; then
+    export LD_LIBRARY_PATH="$CUBLAS_PATH${CURRENT_LD_PATH:+:$CURRENT_LD_PATH}"
+fi
+
+# Refresh current path for second check
+CURRENT_LD_PATH="${LD_LIBRARY_PATH:-}"
 
 # Add cudnn if missing
-[[ ":$LD_LIBRARY_PATH:" != *":$CUDNN_PATH:"* ]] && \
-    export LD_LIBRARY_PATH="$CUDNN_PATH${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-
+if [[ ":$CURRENT_LD_PATH:" != *":$CUDNN_PATH:"* ]]; then
+    export LD_LIBRARY_PATH="$CUDNN_PATH${CURRENT_LD_PATH:+:$CURRENT_LD_PATH}"
+fi
 
 # Defaults (override in this script, env vars, or CLI flags below).
 FW_MODEL="${FW_MODEL:-small}"
